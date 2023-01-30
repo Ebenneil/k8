@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: tomcat
+  namespace: dev-envi-namespace
+spec:
+  selector:
+   matchLabels:
+     app: tomcat
+  template:
+    metadata:
+      name: tomcat-nginx
+      labels:
+        app: tomcat
+    spec:
+      containers:
+      - name: tomcat
+        image: prajwal1327/mytomcat:1.1.2
+        resources:
+          limits: 
+            cpu: "400m"
+            memory: "250Mi"
+          requests: 
+            memory: "250Mi"
+            cpu: "150m"
